@@ -1,19 +1,49 @@
 @font-face {
-  font-family: 'Inter';
-  src: url('src/assets/fonts/Inter/Inter_24pt-Medium.ttf');
+  font-family: 'InterRegular';
+  src: url('src/assets/fonts/Inter/Regular/Inter_24pt-Regular.ttf');
 }
 
 @font-face {
-  font-family: 'Roboto';
-  src: url('src/assets/fonts/Roboto/Roboto-Medium.ttf');
+  font-family: 'InterMedium';
+  src: url('src/assets/fonts/Inter/Medium/Inter_24pt-Medium.ttf');
 }
 
 @font-face {
-  font-family: 'Alumni Sans';
-  src: url('src/assets/fonts/Alumni Sans/AlumniSans-Medium.ttf');
+  font-family: 'InterSemiBold';
+  src: url('src/assets/fonts/Inter/SemiBold/Inter_24pt-SemiBold.ttf');
 }
 
 @font-face {
-  font-family: 'Source Sans';
-  src: url('src/assets/fonts/Source Sans/SourceSans3-Medium.ttf');
+  font-family: 'RobotoRegular';
+  src: url('src/assets/fonts/Roboto/Regular/Roboto-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoMedium';
+  src: url('src/assets/fonts/Roboto/Medium/Roboto-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoBold';
+  src: url('src/assets/fonts/Roboto/Bold/Roboto-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'RobotoExtraBold';
+  src: url('src/assets/fonts/Roboto/Black/Roboto-Black.ttf');
+}
+
+@font-face {
+  font-family: 'AlumniSansMediumItalic';
+  src: url('src/assets/fonts/Alumni Sans/MediumItalic/AlumniSans-MediumItalic.ttf');
+}
+
+@font-face {
+  font-family: 'SourceSansRegular';
+  src: url('src/assets/fonts/Source Sans/Regular/SourceSans3-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'SourceSansBold';
+  src: url('src/assets/fonts/Source Sans/Bold/SourceSans3-Bold.ttf');
 }
