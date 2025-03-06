@@ -1,0 +1,90 @@
+@use '@scss/common/variables/colors' as colors;
+@use '@scss/common/variables/fontWeights' as fontWeights;
+@use '@scss/common/variables/fontSizes' as fontSizes;
+@use '@scss/common/variables/borderRadii' as borderRadii;
+
+$colors: colors.$colors;
+$fontWeights: fontWeights.$fontWeights;
+$fontSizes: fontSizes.$fontSizes;
+$borderRadii: borderRadii.$borderRadii;
+
+.container {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  background-image: url('src/assets/images/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: map-get($colors, WHITE);
+  text-align: center;
+  border-radius: map-get($borderRadii, EXTRA_MEDIUM);
+}
+
+.greeting-container {
+  margin-bottom: 55vh;
+  padding-top: 108px;
+}
+
+.greeting-text {
+  font-family: 'RobotoExtraBold';
+  font-weight: map-get($fontWeights, EXTRA_BOLD);
+  font-size: map-get($fontSizes, HUGE);
+}
+
+.greeting-description {
+  font-family: 'RobotoMedium';
+  font-weight: map-get($fontWeights, MEDIUM);
+  font-size: map-get($fontSizes, GENEROUS);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .pagination {
+    margin-bottom: 40px;
+
+    .pagination-dots {
+      display: flex;
+      gap: 4px;
+
+      .dot {
+        display: block;
+        transition: all 0.3s ease;
+
+        &.small {
+          width: 8px;
+          height: 8px;
+          background-color: map-get($colors, IMAGE_POINT);
+          border-radius: map-get($borderRadii, EXTRA_HUGE);
+        }
+
+        &.large {
+          width: 24px;
+          height: 8px;
+          background-color: map-get($colors, WHITE);
+          border-radius: map-get($borderRadii, EXTRA_NORMAL);
+        }
+      }
+    }
+  }
+
+  .article {
+    width: 406px;
+    &-title {
+      font-family: 'RobotoBold';
+      font-size: map-get($fontSizes, HUGE);
+      font-weight: map-get($fontWeights, BOLD);
+      text-align: center;
+    }
+
+    &-text {
+      font-family: 'RobotoRegular';
+      font-size: map-get($fontSizes, EXTRA_GENEROUS);
+      font-weight: map-get($fontWeights, REGULAR);
+      text-align: center;
+    }
+  }
+}
