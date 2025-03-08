@@ -1,18 +1,14 @@
-@use '@scss/common/variables/colors' as colors;
-@use '@scss/common/variables/fontWeights' as fontWeights;
-@use '@scss/common/variables/fontSizes' as fontSizes;
-@use '@scss/common/variables/borderRadii' as borderRadii;
-
-$colors: colors.$colors;
-$fontWeights: fontWeights.$fontWeights;
-$fontSizes: fontSizes.$fontSizes;
-$borderRadii: borderRadii.$borderRadii;
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontSizes';
+@import '@scss/common/extends';
 
 .container {
-  position: relative;
-  width: 50%;
-  height: 100vh;
-  background-image: url('src/assets/images/background.jpg');
+  @extend %authContainer;
+  background-image:
+    linear-gradient(180deg, map-get($colors, IMAGE_GRADIENT_FIRST) 0%, map-get($colors, IMAGE_GRADIENT_SECOND) 100%),
+    url('src/assets/images/background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   color: map-get($colors, WHITE);
@@ -21,7 +17,7 @@ $borderRadii: borderRadii.$borderRadii;
 }
 
 .greeting-container {
-  margin-bottom: 55vh;
+  margin-bottom: 48vh;
   padding-top: 108px;
 }
 
@@ -78,6 +74,7 @@ $borderRadii: borderRadii.$borderRadii;
       font-size: map-get($fontSizes, HUGE);
       font-weight: map-get($fontWeights, BOLD);
       text-align: center;
+      margin-bottom: 15px;
     }
 
     &-text {
