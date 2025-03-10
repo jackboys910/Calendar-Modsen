@@ -27,7 +27,11 @@ export default tseslint.config(
       'simple-import-sort/imports': [
         'error',
         {
-          groups: [['^react', '^@?\\w'], ['^@assets', '^@components', '^@pages', '^@utils', '^@constants', '^@scss'], ['^\\.']],
+          groups: [
+            ['^react', '^@?\\w'],
+            ['^@hooks', '^@assets', '^@components', '^@pages', '^@utils', '^@constants', '^@store', '^@scss'],
+            ['^\\.'],
+          ],
         },
       ],
       'simple-import-sort/exports': 'error',

@@ -6,10 +6,11 @@ export const COVER_TEXT = {
 
 export const BRAND_NAME = 'Modsen Calendar';
 
-export const AUTH_LAYOUT_TEXT = {
-  LAYOUT_REGISTATION_TITLE: 'Create Your Account',
-  LAYOUT_REGISTATION_TEXT: 'Already have an account? ',
-  LAYOUT_LOGIN_TITLE: 'Login',
-  LAYOUT_LOGIN_TEXT: 'Don`t have an account? ',
-  LAYOUT_LOGIN_TOGGLE: 'Create Now',
+export const AUTH_TEXT = {
+  REGISTATION_TITLE: 'Create Your Account',
+  REGISTATION_TEXT: 'Already have an account? ',
+  REGISTRATION_BUTTON: 'Register',
+  LOGIN_TITLE: 'Login',
+  LOGIN_TEXT: 'Don`t have an account? ',
+  LOGIN_TOGGLE: 'Create Now',
 };

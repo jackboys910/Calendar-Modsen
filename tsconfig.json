@@ -9,7 +9,9 @@
       "@pages/*": ["./src/pages/*"],
       "@utils/*": ["./src/utils/*"],
       "@constants/*": ["./src/constants/*"],
-      "@scss/*": ["./src/scss/*"]
+      "@scss/*": ["./src/scss/*"],
+      "@store/*": ["./src/store/*"],
+      "@hooks/*": ["./src/hooks/*"]
     }
   },
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }],

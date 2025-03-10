@@ -1,6 +1,6 @@
+import AuthLayout from '@components/AuthLayout';
 import Cover from '@components/Cover';
 
-import AuthLayout from '../../components/AuthLayout';
 import styles from './index.module.scss';
 
 const Authorization: React.FC = () => {
