@@ -1,0 +1,30 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/fontSizes';
+
+.auth {
+  margin-top: 40px;
+
+  &-description {
+    font-family: 'SourceSansBold';
+    font-weight: map-get($fontWeights, BOLD);
+    font-size: map-get($fontSizes, SUBSTANTIAL);
+    color: map-get($colors, CREATE_ACC_TEXT);
+    padding-left: 10px;
+  }
+
+  &-link-description {
+    font-family: 'SourceSansRegular';
+    font-weight: map-get($fontWeights, REGULAR);
+    font-size: map-get($fontSizes, BIG);
+    color: map-get($colors, HAVE_ACC_TEXT);
+    line-height: map-get($lineHeights, COMPACT);
+    padding-left: 12px;
+    letter-spacing: 0.36px;
+  }
+
+  &-link {
+    color: map-get($colors, INPUT_BORDER);
+  }
+}

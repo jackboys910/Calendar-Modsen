@@ -1,0 +1,58 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontSizes';
+
+.registration-group {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &-label {
+    font-family: 'SourceSansRegular';
+    font-weight: map-get($fontWeights, REGULAR);
+    font-size: map-get($fontSizes, EXTRA_NORMAL);
+    line-height: map-get($lineHeights, TINY);
+    color: map-get($colors, INPUT_NAME);
+    padding-left: 10px;
+    margin-bottom: 5px;
+  }
+
+  &-input {
+    font-family: 'SourceSansRegular';
+    font-weight: map-get($fontWeights, REGULAR);
+    font-size: map-get($fontSizes, BIG);
+    line-height: map-get($lineHeights, COMPACT);
+    color: map-get($colors, INPUT_TEXT);
+    border: 1.44px solid map-get($colors, INPUT_BORDER);
+    border-radius: map-get($borderRadii, NORMAL);
+    height: 58.36px;
+    padding-left: 15px;
+    padding-right: 35px;
+  }
+
+  &-toggle {
+    position: absolute;
+    right: 6px;
+    top: 43px;
+    background: none;
+    border: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  &-icon {
+    color: map-get($colors, INPUT_BORDER);
+  }
+}
+
+.error-text {
+  font-family: 'SourceSansRegular';
+  font-weight: map-get($fontWeights, REGULAR);
+  font-size: map-get($fontSizes, MEDIUM);
+  line-height: map-get($lineHeights, MEDIUM);
+  color: map-get($colors, INPUT_ERROR_TEXT);
+  position: absolute;
+  top: 78px;
+}
