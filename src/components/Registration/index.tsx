@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { useRegistrationForm } from '@hooks/useRegistrationForm';
+import { useAuthForm } from '@hooks/useAuthForm';
 import { AUTH_TEXT } from '@constants/authPageText';
 
 import InputField from '../InputField';
@@ -8,7 +8,10 @@ import styles from './index.module.scss';
 
 const Registration: React.FC = () => {
   const { formData, errors, handleChange, handleSubmit, togglePasswordVisibility, showPassword, showConfirmPassword, isFormValid } =
-    useRegistrationForm(useDispatch());
+    useAuthForm(useDispatch(), true);
+
+  const handlePasswordVisibilityToggle = () => togglePasswordVisibility('password');
+  const handleConfirmPasswordVisibilityToggle = () => togglePasswordVisibility('confirmPassword');
 
   return (
     <form className={styles['registration-form']} onSubmit={handleSubmit}>
@@ -29,7 +32,7 @@ const Registration: React.FC = () => {
         value={formData.password}
         error={errors.password}
         onChange={handleChange}
-        onToggleVisibility={() => togglePasswordVisibility('password')}
+        onToggleVisibility={handlePasswordVisibilityToggle}
         showToggle={true}
         isVisible={showPassword}
       />
@@ -40,13 +43,14 @@ const Registration: React.FC = () => {
         value={formData.confirmPassword}
         error={errors.confirmPassword}
         onChange={handleChange}
-        onToggleVisibility={() => togglePasswordVisibility('confirmPassword')}
+        onToggleVisibility={handleConfirmPasswordVisibilityToggle}
         showToggle={true}
         isVisible={showConfirmPassword}
       />
       <button
         className={`${styles['registration-button']} ${isFormValid ? styles['registration-button-active'] : styles['registration-button-disabled']}`}
         type='submit'
+        disabled={!isFormValid}
       >
         {AUTH_TEXT.REGISTRATION_BUTTON}
       </button>
