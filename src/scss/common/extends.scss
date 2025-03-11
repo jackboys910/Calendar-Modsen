@@ -1,5 +1,41 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontSizes';
+
 %authContainer {
   position: relative;
   width: 50%;
   height: 100vh;
+}
+
+%authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 434px;
+  padding-left: 5px;
+}
+
+%authButton {
+  font-family: 'SourceSansBold';
+  font-weight: map-get($fontWeights, BOLD);
+  font-size: map-get($fontSizes, EXTRA_BIG);
+  border-radius: map-get($borderRadii, NORMAL);
+  line-height: 120%;
+  height: 58.36px;
+  margin-top: 10px;
+
+  &-active {
+    color: map-get($colors, WHITE);
+    border: none;
+    background: linear-gradient(271.15deg, map-get($colors, INPUT_BORDER) 7.64%, map-get($colors, GRADIENT_REGISTER) 90.68%);
+  }
+
+  &-disabled {
+    color: map-get($colors, DISABLED_REGISTER_BORDER);
+    border: 1.39px solid map-get($colors, DISABLED_REGISTER_BORDER);
+    background: map-get($colors, DISABLED_REGISTER_BACKGROUND);
+    cursor: not-allowed;
+  }
 }
