@@ -1,5 +1,3 @@
-@import '@scss/common/variables/colors';
-@import '@scss/common/variables/fontWeights';
 @import '@scss/common/variables/borderRadii';
 @import '@scss/common/variables/fontSizes';
 @import '@scss/common/extends';
@@ -12,9 +10,7 @@
 }
 
 .brand-title {
-  font-family: 'AlumniSansMediumItalic';
-  font-weight: map-get($fontWeights, MEDIUM);
+  @extend %brandTitle;
   font-size: map-get($fontSizes, EXTRA_HUGE);
-  color: map-get($colors, PRIMARY_TITLE);
   padding-left: 10px;
 }

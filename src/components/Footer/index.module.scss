@@ -1,0 +1,55 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontSizes';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  background-color: transparent;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 248px;
+  height: 140px;
+
+  &-text {
+    font-family: 'RobotoRegular';
+    font-weight: map-get($fontWeights, REGULAR);
+    font-size: map-get($fontSizes, BIG);
+    line-height: map-get($lineHeights, MEDIUM);
+    color: map-get($colors, SITE_DESCRIPTION_TEXT);
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+  height: 63px;
+  align-items: flex-end;
+  padding-bottom: 10px;
+
+  &-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 28px;
+    height: 28px;
+    border: 1px solid map-get($colors, LINKS_BACKGROUND);
+    border-radius: 50%;
+    transition:
+      transform 0.2s,
+      background-color 0.2s;
+
+    &:hover {
+      transform: scale(1.1);
+      background-color: map-get($colors, HOVER_LINK_BACKGROUND);
+    }
+  }
+}

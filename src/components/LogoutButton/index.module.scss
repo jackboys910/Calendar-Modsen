@@ -1,0 +1,18 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontSizes';
+
+.logout-button {
+  font-family: 'RobotoBold';
+  font-weight: map-get($fontWeights, BOLD);
+  font-size: map-get($fontSizes, BIG);
+  color: map-get($colors, LOGOUT_BUTTON_TEXT);
+  background-color: map-get($colors, LOGOUT_BUTTON_BACKGROUND);
+  width: 151px;
+  height: 34px;
+  border: none;
+  border-radius: map-get($borderRadii, HUGE);
+  box-shadow: 10px 10px 20px 0px map-get($colors, LOGOUT_BUTTON_SHADOW);
+}

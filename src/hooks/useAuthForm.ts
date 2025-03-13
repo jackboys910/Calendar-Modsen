@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
@@ -26,6 +27,7 @@ interface IErrors {
 }
 
 export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = false) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<IFormData>({
     firstName: '',
     lastName: '',
@@ -89,25 +91,23 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        await setDoc(doc(db, 'users', user.uid), {
+        const userData = {
           id: user.uid,
           email,
           firstName,
           lastName,
-        });
+        };
+
+        await setDoc(doc(db, 'users', user.uid), userData);
 
         if (dispatch) {
-          dispatch(
-            addUser({
-              id: user.uid,
-              email,
-              firstName: formData.firstName,
-              lastName: formData.lastName,
-            })
-          );
+          dispatch(addUser(userData));
         }
 
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+
         alert('Registration successful!');
+        navigate('/calendar');
       } catch (error) {
         if (error instanceof FirebaseError) {
           if (error.code === 'auth/email-already-in-use') {
@@ -122,8 +122,19 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
       }
     } else {
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        const userData = {
+          id: user.uid,
+          email,
+          firstName,
+          lastName,
+        };
+
+        localStorage.setItem('currentUser', JSON.stringify(userData));
         alert('Login successful!');
+        navigate('/calendar');
       } catch {
         setErrors((prevErrors) => ({
           ...prevErrors,
