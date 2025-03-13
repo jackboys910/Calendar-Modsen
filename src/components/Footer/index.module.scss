@@ -3,18 +3,17 @@
 @import '@scss/common/variables/lineHeights';
 @import '@scss/common/variables/borderRadii';
 @import '@scss/common/variables/fontSizes';
+@import '@scss/common/extends';
 
 .container {
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
   align-items: flex-start;
   text-align: left;
   background-color: transparent;
 }
 
 .title {
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
   gap: 25px;
   width: 248px;
   height: 140px;

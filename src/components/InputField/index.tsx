@@ -29,7 +29,14 @@ const InputField: React.FC<IInputFieldProps> = ({
   return (
     <div className={styles['registration-group']}>
       <label className={styles['registration-group-label']}>{label}</label>
-      <input className={styles['registration-group-input']} type={type} name={name} value={value} onChange={onChange} required />
+      <input
+        className={`${styles['registration-group-input']} ${error ? styles['registration-group-input-error'] : ''}`}
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        required
+      />
       {showToggle && (
         <button type='button' className={styles['registration-group-toggle']} onClick={onToggleVisibility}>
           {isVisible ? (

@@ -9,9 +9,13 @@
   height: 100vh;
 }
 
-%authForm {
+%flexColumn {
   display: flex;
   flex-direction: column;
+}
+
+%authForm {
+  @extend %flexColumn;
   gap: 16px;
   max-width: 434px;
   padding-left: 5px;
@@ -46,7 +50,11 @@
   color: map-get($colors, PRIMARY_TITLE);
 }
 
-%flexColumn {
-  display: flex;
-  flex-direction: column;
+%successMessage {
+  font-family: 'SourceSansBold';
+  font-weight: map-get($fontWeights, BOLD);
+  font-size: map-get($fontSizes, EXTRA_BIG);
+  border-radius: map-get($borderRadii, NORMAL);
+  color: map-get($colors, SUCCESS_MESSAGE);
+  text-align: center;
 }
