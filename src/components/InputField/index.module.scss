@@ -3,10 +3,10 @@
 @import '@scss/common/variables/lineHeights';
 @import '@scss/common/variables/borderRadii';
 @import '@scss/common/variables/fontSizes';
+@import '@scss/common/extends';
 
 .registration-group {
-  display: flex;
-  flex-direction: column;
+  @extend %flexColumn;
   position: relative;
 
   &-label {
@@ -30,6 +30,10 @@
     height: 58.36px;
     padding-left: 15px;
     padding-right: 35px;
+  }
+
+  &-input-error {
+    border-color: map-get($colors, INPUT_ERROR_BORDER);
   }
 
   &-toggle {

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 import { auth, db } from '@utils/firebase';
 import { validateConfirmPassword, validateEmail, validateName, validatePassword } from '@utils/validation/authorizationValidation';
@@ -44,6 +44,8 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
     confirmPassword: null,
   });
 
+  const [loading, setLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
@@ -69,6 +71,7 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
     const { firstName, lastName, email, password, confirmPassword } = formData;
 
     const newErrors: IErrors = {
@@ -83,11 +86,12 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
 
     const hasErrors = Object.values(newErrors).some((error) => error !== null);
     if (hasErrors) {
+      setLoading(false);
       return;
     }
 
-    if (isRegistration) {
-      try {
+    try {
+      if (isRegistration) {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
@@ -105,43 +109,42 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
         }
 
         localStorage.setItem('currentUser', JSON.stringify(userData));
-
-        alert('Registration successful!');
-        navigate('/calendar');
-      } catch (error) {
-        if (error instanceof FirebaseError) {
-          if (error.code === 'auth/email-already-in-use') {
-            setErrors((prevErrors) => ({
-              ...prevErrors,
-              email: 'This email is already registered',
-            }));
-          } else {
-            alert('Registration failed. Please try again.');
-          }
-        }
-      }
-    } else {
-      try {
+        setSuccessMessage('Registration Successful!<br />Redirecting to calendar page...');
+        setTimeout(() => {
+          navigate('/calendar');
+        }, 1500);
+      } else {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        const userData = {
-          id: user.uid,
-          email,
-          firstName,
-          lastName,
-        };
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        const userData = userDoc.exists() ? userDoc.data() : {};
 
-        localStorage.setItem('currentUser', JSON.stringify(userData));
-        alert('Login successful!');
-        navigate('/calendar');
-      } catch {
+        localStorage.setItem(
+          'currentUser',
+          JSON.stringify({
+            id: user.uid,
+            email,
+            firstName: userData.firstName || '',
+            lastName: userData.lastName || '',
+          })
+        );
+
+        setSuccessMessage('Login Successful!<br />Redirecting to calendar page...');
+        setTimeout(() => {
+          navigate('/calendar');
+        }, 1500);
+      }
+    } catch (error) {
+      if (error instanceof FirebaseError) {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          email: null,
-          password: 'Invalid email or password',
+          email: error.code === 'auth/email-already-in-use' ? 'This email is already registered' : null,
+          password: error.code === 'auth/wrong-password' ? 'Invalid email or password' : null,
         }));
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -165,5 +168,7 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
     showPassword,
     showConfirmPassword,
     isFormValid,
+    loading,
+    successMessage,
   };
 };

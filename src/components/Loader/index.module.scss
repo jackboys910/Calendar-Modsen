@@ -1,0 +1,18 @@
+@import '@scss/common/variables/colors';
+
+.loader {
+  position: relative;
+  left: 50%;
+  border: 2px solid map-get($colors, LOADER_BORDER);
+  border-left-color: map-get($colors, BLACK);
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

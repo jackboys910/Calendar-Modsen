@@ -4,11 +4,22 @@ import { useAuthForm } from '@hooks/useAuthForm';
 import { AUTH_TEXT } from '@constants/authPageText';
 
 import InputField from '../InputField';
+import Loader from '../Loader';
 import styles from './index.module.scss';
 
 const Registration: React.FC = () => {
-  const { formData, errors, handleChange, handleSubmit, togglePasswordVisibility, showPassword, showConfirmPassword, isFormValid } =
-    useAuthForm(useDispatch(), true);
+  const {
+    formData,
+    errors,
+    handleChange,
+    handleSubmit,
+    togglePasswordVisibility,
+    showPassword,
+    showConfirmPassword,
+    isFormValid,
+    loading,
+    successMessage,
+  } = useAuthForm(useDispatch(), true);
 
   const handlePasswordVisibilityToggle = () => togglePasswordVisibility('password');
   const handleConfirmPasswordVisibilityToggle = () => togglePasswordVisibility('confirmPassword');
@@ -50,10 +61,11 @@ const Registration: React.FC = () => {
       <button
         className={`${styles['registration-button']} ${isFormValid ? styles['registration-button-active'] : styles['registration-button-disabled']}`}
         type='submit'
-        disabled={!isFormValid}
+        disabled={!isFormValid || loading}
       >
-        {AUTH_TEXT.REGISTRATION_BUTTON}
+        {loading ? <Loader /> : AUTH_TEXT.REGISTRATION_BUTTON}
       </button>
+      <p className={styles['success-message']} dangerouslySetInnerHTML={{ __html: successMessage }}></p>
     </form>
   );
 };

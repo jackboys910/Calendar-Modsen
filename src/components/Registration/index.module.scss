@@ -16,3 +16,7 @@
     @extend %authButton-disabled;
   }
 }
+
+.success-message {
+  @extend %successMessage;
+}
