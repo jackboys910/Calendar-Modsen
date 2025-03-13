@@ -1,0 +1,94 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontSizes';
+@import '@scss/common/extends';
+
+.container {
+  @extend %flexColumn;
+  align-items: center;
+  text-align: center;
+  width: 250px;
+  max-height: 1000px;
+  margin-left: 66px;
+  padding-top: 35px;
+  gap: 35px;
+}
+
+.brand-title {
+  @extend %brandTitle;
+  font-size: map-get($fontSizes, HUGE);
+  margin-bottom: 25px;
+}
+
+.greeting {
+  margin-bottom: 10px;
+
+  &-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &-name {
+    font-family: 'RobotoBold';
+    font-weight: map-get($fontWeights, BOLD);
+    font-size: map-get($fontSizes, LARGE);
+    line-height: map-get($lineHeights, EXTRA_BIG);
+    color: map-get($colors, GREETING_TEXT);
+  }
+
+  &-email {
+    font-family: 'RobotoBold';
+    font-weight: map-get($fontWeights, BOLD);
+    font-size: map-get($fontSizes, BIG);
+    line-height: map-get($lineHeights, SEMI_LARGE);
+    color: map-get($colors, EMAIL_TEXT);
+  }
+}
+
+.calendar-button {
+  @extend %flexColumn;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  position: relative;
+  width: 140px;
+  height: 140px;
+  background-color: map-get($colors, WHITE);
+  box-shadow: 0px 10px 30px 0px map-get($colors, GO_TO_CALENDAR_SHADOW);
+  border-radius: map-get($borderRadii, MEDIUM);
+  margin-bottom: 20px;
+
+  &-icon {
+    padding-top: 20px;
+  }
+
+  &-dot {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 7px;
+    height: 7px;
+    background-color: map-get($colors, GO_TO_CALENDAR_POINT);
+    border-radius: map-get($borderRadii, EXTRA_HUGE);
+    box-shadow: 0px 10px 30px 0px map-get($colors, GO_TO_CALENDAR_POINT);
+  }
+
+  &-text {
+    font-family: 'RobotoBold';
+    font-weight: map-get($fontWeights, BOLD);
+    font-size: map-get($fontSizes, MEDIUM);
+    line-height: map-get($lineHeights, STANDARD);
+    color: map-get($colors, GREETING_TEXT);
+  }
+}
+
+.footer-container {
+  position: absolute;
+  bottom: 25px;
+  display: flex;
+  align-items: flex-end;
+}

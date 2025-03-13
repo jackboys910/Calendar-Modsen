@@ -39,3 +39,14 @@
     cursor: not-allowed;
   }
 }
+
+%brandTitle {
+  font-family: 'AlumniSansMediumItalic';
+  font-weight: map-get($fontWeights, MEDIUM);
+  color: map-get($colors, PRIMARY_TITLE);
+}
+
+%flexColumn {
+  display: flex;
+  flex-direction: column;
+}
