@@ -90,8 +90,8 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
       return;
     }
 
-    try {
-      if (isRegistration) {
+    if (isRegistration) {
+      try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
@@ -111,9 +111,25 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
         localStorage.setItem('currentUser', JSON.stringify(userData));
         setSuccessMessage('Registration Successful!<br />Redirecting to calendar page...');
         setTimeout(() => {
+          setLoading(false);
           navigate('/calendar');
         }, 1500);
-      } else {
+      } catch (error) {
+        if (error instanceof FirebaseError) {
+          if (error.code === 'auth/email-already-in-use') {
+            setErrors((prevErrors) => ({
+              ...prevErrors,
+              email: 'This email is already registered',
+            }));
+          }
+        }
+      } finally {
+        if (!successMessage) {
+          setLoading(false);
+        }
+      }
+    } else {
+      try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
@@ -132,19 +148,20 @@ export const useAuthForm = (dispatch?: AppDispatch, isRegistration: boolean = fa
 
         setSuccessMessage('Login Successful!<br />Redirecting to calendar page...');
         setTimeout(() => {
+          setLoading(false);
           navigate('/calendar');
         }, 1500);
-      }
-    } catch (error) {
-      if (error instanceof FirebaseError) {
+      } catch {
         setErrors((prevErrors) => ({
           ...prevErrors,
-          email: error.code === 'auth/email-already-in-use' ? 'This email is already registered' : null,
-          password: error.code === 'auth/wrong-password' ? 'Invalid email or password' : null,
+          email: 'Invalid email or password',
+          password: 'Invalid email or password',
         }));
+      } finally {
+        if (!successMessage) {
+          setLoading(false);
+        }
       }
-    } finally {
-      setLoading(false);
     }
   };
 

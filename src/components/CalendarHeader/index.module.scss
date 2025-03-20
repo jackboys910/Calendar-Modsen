@@ -1,0 +1,55 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/borderRadii';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/fontSizes';
+
+.calendar-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 25px;
+  border-bottom: 2px solid map-get($colors, FILTER_BORDER);
+
+  .switch {
+    display: flex;
+    border: 2px solid map-get($colors, FILTER_BORDER);
+    overflow: hidden;
+    width: 121px;
+    height: 40px;
+
+    &-button {
+      font-family: 'RobotoExtraBold';
+      font-size: map-get($fontSizes, MEDIUM);
+      font-weight: map-get($fontWeights, EXTRA_BOLD);
+      line-height: map-get($lineHeights, STANDARD);
+      color: map-get($colors, EMAIL_TEXT);
+      width: 50%;
+      background-color: map-get($colors, WHITE);
+      position: relative;
+
+      &:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2px;
+        height: 100%;
+        background-color: map-get($colors, FILTER_BORDER);
+      }
+    }
+
+    &:first-child {
+      border-top-left-radius: map-get($borderRadii, EXTRA_LARGE);
+      border-bottom-left-radius: map-get($borderRadii, EXTRA_LARGE);
+    }
+
+    &:last-child {
+      border-top-right-radius: map-get($borderRadii, EXTRA_LARGE);
+      border-bottom-right-radius: map-get($borderRadii, EXTRA_LARGE);
+    }
+
+    &-active {
+      color: map-get($colors, GREETING_TEXT);
+    }
+  }
+}

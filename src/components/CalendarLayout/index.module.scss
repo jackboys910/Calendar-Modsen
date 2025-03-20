@@ -1,0 +1,11 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/borderRadii';
+
+.container {
+  margin: 90px 0 50px 0;
+  width: 66.67vw;
+  max-height: 1015px;
+  max-width: 950px;
+  background-color: map-get($colors, WHITE);
+  border-radius: map-get($borderRadii, EXTRA_MEDIUM);
+}
