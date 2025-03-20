@@ -1,0 +1,57 @@
+@import '@scss/common/variables/colors';
+@import '@scss/common/variables/lineHeights';
+@import '@scss/common/variables/fontWeights';
+@import '@scss/common/variables/fontSizes';
+@import '@scss/common/extends';
+
+.hours-column {
+  @extend %flexColumn;
+  width: 66px;
+  border-right: 1px solid map-get($colors, FILTER_BORDER);
+  background-color: map-get($colors, WHITE);
+
+  .hour-cell {
+    @extend %flexColumn;
+    align-items: center;
+    justify-content: center;
+    font-family: 'RobotoBold';
+    font-size: map-get($fontSizes, MEDIUM);
+    font-weight: map-get($fontWeights, BOLD);
+    line-height: map-get($lineHeights, STANDARD);
+    color: map-get($colors, EMAIL_TEXT);
+    height: 70px;
+    border-bottom: 1px solid map-get($colors, FILTER_BORDER);
+  }
+}
+
+.calendar-body {
+  display: flex;
+
+  .week-view {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .day-view {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 70px;
+    width: 100%;
+  }
+
+  .day-column {
+    @extend %flexColumn;
+    border: 1px solid #ddd;
+  }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    background-color: map-get($colors, WHITE);
+    padding: 8px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    height: 70px;
+  }
+}

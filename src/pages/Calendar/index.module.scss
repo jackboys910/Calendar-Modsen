@@ -1,0 +1,7 @@
+@import '@scss/common/variables/colors';
+
+.container {
+  display: flex;
+  gap: 50px;
+  background-color: map-get($colors, CALENDAR_BACKGROUND);
+}
